@@ -20,6 +20,10 @@ pwd
 cp expense.conf /etc/nginx/default.d/expense.conf
 echo $?
 
+echo "copying backend.service"
+cp backend.service /etc/systemd/system/backend.service
+echo $?
+
 echo "downloanding frontend.zip"
 curl -o /tmp/frontend.zip https://expense-artifacts.s3.amazonaws.com/expense-frontend-v2.zip
 cd /usr/share/nginx/html
@@ -68,19 +72,6 @@ echo "adding user"
 useradd expense
 echo $?
 
-echo "pwd command"
-pwd
-
-echo "CD command"
-cd
-
-echo "New Location"
-pwd
-
-echo "copying backend.service"
-cp backend.service /etc/systemd/system/backend.service
-
-
 echo "downloading backend.zip"
 rm -rf /app
 echo $?
@@ -91,6 +82,7 @@ unzip /tmp/backend.zip
 echo $?
 
 echo "npm install"
+cd /app
 npm install
 echo $?
 
