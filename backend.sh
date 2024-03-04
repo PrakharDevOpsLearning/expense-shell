@@ -1,6 +1,7 @@
 #BackEnd Script
 source common.sh
-echo "disbale nods.js"
+my_sql_root_pwd = $1
+echo "disable nods.js"
 dnf module disable nodejs -y &>>$LOG
 echo $?
 
@@ -47,5 +48,5 @@ dnf install mysql -y &>>$LOG
 echo $?
 
 echo "schema add"
-mysql -h 172.31.19.1 -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG
+mysql -h 172.31.19.1 -uroot -p${my_sql_root_pwd} < /app/schema/backend.sql &>>$LOG
 echo $?
