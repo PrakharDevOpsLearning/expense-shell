@@ -1,50 +1,51 @@
 #BackEnd Script
+source common.sh
 echo "disbale nods.js"
-dnf module disable nodejs -y &>>/tmp/expense.log
+dnf module disable nodejs -y &>>$LOG
 echo $?
 
 echo "enable node.js"
-dnf module enable nodejs:20 -y &>>/tmp/expense.log
+dnf module enable nodejs:20 -y &>>$LOG
 echo $?
 
 echo "install node.js"
-dnf install nodejs -y &>>/tmp/expense.log
+dnf install nodejs -y &>>$LOG
 echo $?
 
 echo "adding user"
-useradd expense &>>/tmp/expense.log
+useradd expense &>>$LOG
 echo $?
 
 echo "copying backend.service"
-cp backend.service /etc/systemd/system/backend.service &>>/tmp/expense.log
+cp backend.service /etc/systemd/system/backend.service &>>$LOG
 echo $?
 
 echo "downloading backend.zip"
-rm -rf /app &>>/tmp/expense.log
+rm -rf /app &>>$LOG
 echo $?
-mkdir /app &>>/tmp/expense.log
-curl -o /tmp/backend.zip https://expense-artifacts.s3.amazonaws.com/expense-backend-v2.zip &>>/tmp/expense.log
-cd /app &>>/tmp/expense.log
-unzip /tmp/backend.zip &>>/tmp/expense.log
+mkdir /app &>>$LOG
+curl -o /tmp/backend.zip https://expense-artifacts.s3.amazonaws.com/expense-backend-v2.zip &>>$LOG
+cd /app &>>$LOG
+unzip /tmp/backend.zip &>>$LOG
 echo $?
 
 echo "npm install"
-cd /app &>>/tmp/expense.log
-npm install &>>/tmp/expense.log
+cd /app &>>$LOG
+npm install &>>$LOG
 echo $?
 
 echo "enable backend"
-systemctl enable backend &>>/tmp/expense.log
+systemctl enable backend &>>$LOG
 echo $?
 
 echo "start backend"
-systemctl start backend &>>/tmp/expense.log
+systemctl start backend &>>$LOG
 echo $?
 
 echo "install mqsql"
-dnf install mysql -y &>>/tmp/expense.log
+dnf install mysql -y &>>$LOG
 echo $?
 
 echo "schema add"
-mysql -h 172.31.19.1 -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>/tmp/expense.log
+mysql -h 172.31.19.1 -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG
 echo $?
