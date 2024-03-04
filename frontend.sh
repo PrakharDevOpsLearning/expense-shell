@@ -67,6 +67,8 @@ echo "adding user"
 useradd expense
 echo $?
 
+echo "pwd command"
+pwd
 echo "copying backend.service"
 cp backend.service /etc/systemd/system/backend.service
 
