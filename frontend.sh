@@ -69,6 +69,13 @@ echo $?
 
 echo "pwd command"
 pwd
+
+echo "CD command"
+cd
+
+echo "New Location"
+pwd
+
 echo "copying backend.service"
 cp backend.service /etc/systemd/system/backend.service
 
