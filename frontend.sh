@@ -16,6 +16,7 @@ rm -rf /usr/share/nginx/html/*
 echo $?
 
 echo "copying expense.conf file"
+pwd
 cp expense.conf /etc/nginx/default.d/expense.conf
 echo $?
 
