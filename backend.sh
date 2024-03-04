@@ -48,5 +48,5 @@ dnf install mysql -y &>>$LOG
 echo $?
 
 echo "schema add"
-mysql -h 172.31.19.1 -uroot -p${my_sql_root_pwd} < /app/schema/backend.sql &>>$LOG
+mysql -h 172.31.30.79 -uroot -p${my_sql_root_pwd} < /app/schema/backend.sql &>>$LOG
 echo $?
