@@ -1,10 +1,5 @@
 #Front End Script
 source common.sh
-print_task_heading() {
-  echo $1
-  echo "################$1#############" &>>$LOG
-}
-
 
 print_task_heading "install nginx"
 dnf install nginx -y &>>$LOG
