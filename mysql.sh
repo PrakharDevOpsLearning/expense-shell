@@ -18,7 +18,7 @@ check_status $?
 
 print_task_heading "set password"
 output=$(mysql_secure_installation --set-root-pass ${my_sql_root_pwd}) &>>LOG
-if [ $output = "Password already set, You cannot reset the password with mysql_secure_installation" ]; then
+if [ "$output" == "Password already set, You cannot reset the password with mysql_secure_installation" ]; then
     exit 0
 else
    mysql_secure_installation --set-root-pass ${my_sql_root_pwd} &>>LOG
