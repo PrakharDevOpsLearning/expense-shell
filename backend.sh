@@ -3,8 +3,8 @@ source common.sh
 my_sql_root_pwd = $1
 
 if [ -z "$my_sql_root_pwd" ]; then
-   echo password is missing
-   exit 1
+   echo password is missing &>>$LOG
+   exit 1 &>>$LOG
 fi
 
 print_task_heading "disable nods.js"
