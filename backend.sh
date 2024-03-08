@@ -27,8 +27,8 @@ check_status $?
 
 print_task_heading "adding user"
 id expense &>>$LOG
-if [ $1 -ne 0 ]; then
-  useradd expense
+if [ $? -ne 0 ]; then
+  useradd expense &>>$LOG
 fi
 check_status $?
 
