@@ -26,6 +26,8 @@ dnf install nodejs -y &>>$LOG
 check_status $?
 
 print_task_heading "adding user"
+id expense
+echo $?
 useradd expense &>>$LOG
 check_status $?
 
