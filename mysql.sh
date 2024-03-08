@@ -17,10 +17,9 @@ systemctl start mysqld &>>$LOG
 check_status $?
 
 print_task_heading "set password"
-show databases &<<LOG
+echo 'show databases' &>>$LOG
 
-
-<<
+<<EOF
 output=$(mysql_secure_installation --set-root-pass ${my_sql_root_pwd}) &>>LOG
 echo $output
 if [ "$output" == "Password already set, You cannot reset the password with mysql_secure_installation" ]; then
