@@ -19,6 +19,6 @@ check_status $?
 print_task_heading "set password"
 output=$(mysql_secure_installation --set-root-pass ${my_sql_root_pwd})
 echo $?
-#echo $output
+echo $output
 echo $?
 check_status $?
