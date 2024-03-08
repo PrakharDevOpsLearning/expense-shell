@@ -4,18 +4,18 @@ if [ -z "$1" ]; then
   echo password is missing
   exit 1
 fi
-echo "install mysql service"
+print_task_heading "install mysql service"
 dnf install mysql-server -y &>>$LOG
 check_status $?
 
-echo "enable mysql id"
+print_task_heading "enable mysql id"
 systemctl enable mysqld &>>$LOG
 check_status $?
 
-echo "start mysqlid"
+print_task_heading "start mysqlid"
 systemctl start mysqld &>>$LOG
 check_status $?
 
-echo "set password"
+print_task_heading "set password"
 mysql_secure_installation --set-root-pass $1 &>>$LOG
 check_status $?

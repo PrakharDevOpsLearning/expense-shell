@@ -7,27 +7,27 @@ if [ -z "${my_sql_root_pwd}" ]; then
   exit 1
 fi
 
-echo "disable nods.js"
+print_task_heading "disable nods.js"
 dnf module disable nodejs -y &>>$LOG
 check_status $?
 
-echo "enable node.js"
+print_task_heading "enable node.js"
 dnf module enable nodejs:20 -y &>>$LOG
 check_status $?
 
-echo "install node.js"
+print_task_heading "install node.js"
 dnf install nodejs -y &>>$LOG
 check_status $?
 
-echo "adding user"
+print_task_heading "adding user"
 useradd expense &>>$LOG
 check_status $?
 
-echo "copying backend.service"
+print_task_heading "copying backend.service"
 cp backend.service /etc/systemd/system/backend.service &>>$LOG
 check_status $?
 
-echo "downloading backend.zip"
+print_task_heading "downloading backend.zip"
 rm -rf /app &>>$LOG
 check_status $?
 mkdir /app &>>$LOG
@@ -36,23 +36,23 @@ cd /app &>>$LOG
 unzip /tmp/backend.zip &>>$LOG
 check_status $?
 
-echo "npm install"
+print_task_heading "npm install"
 cd /app &>>$LOG
 npm install &>>$LOG
 check_status $?
 
-echo "enable backend"
+print_task_heading "enable backend"
 systemctl enable backend &>>$LOG
 check_status $?
 
-echo "start backend"
+print_task_heading "start backend"
 systemctl start backend &>>$LOG
 check_status $?
 
-echo "install mqsql"
+print_task_heading "install mqsql"
 dnf install mysql -y &>>$LOG
 check_status $?
 
-echo "schema add"
+print_task_heading "schema add"
 mysql -h 172.31.3.184 -uroot -p${my_sql_root_pwd} < /app/schema/backend.sql &>>$LOG
 check_status $?
