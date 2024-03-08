@@ -2,7 +2,7 @@
 source common.sh
 my_sql_root_pwd = $1
 
-if [ -z "${my_sql_root_pwd }" ]; then
+if [ -z "${my_sql_root_pwd}" ]; then
   echo password is missing
   exit 1
 fi
