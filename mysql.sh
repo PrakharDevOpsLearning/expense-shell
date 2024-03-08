@@ -1,6 +1,6 @@
 source common.sh
-$1
-if [ -z "$1" ]; then
+my_sql_root_pwd=$1
+if [ -z "${my_sql_root_pwd}" ]; then
   echo password is missing
   exit 1
 fi
@@ -17,6 +17,6 @@ systemctl start mysqld &>>$LOG
 check_status $?
 
 print_task_heading "set password"
-output=$(mysql_secure_installation --set-root-pass $1 &>>$LOG)
+output=$(mysql_secure_installation --set-root-pass ${my_sql_root_pwd} &>>$LOG)
 echo $output
 check_status $?
