@@ -1,11 +1,17 @@
 #BackEnd Script
 source common.sh
-my_sql_root_pwd = $1
+my_sql_root_pwd=$1
 
-if [ -z "$my_sql_root_pwd" ]; then
+if [ -z "${my_sql_root_pwd}" ]; then
    echo password is missing
    exit 1
 fi
+
+
+#if [ -z "${mysql_root_password}" ]; then
+#  echo Input Password is missing.
+#  exit 1
+#fi
 
 print_task_heading "disable nods.js"
 dnf module disable nodejs -y &>>$LOG
