@@ -18,5 +18,5 @@ check_status $?
 
 print_task_heading "set password"
 output=$(mysql_secure_installation --set-root-pass $1 &>>$LOG)
-echo $output
+echo "$output"
 check_status $?
