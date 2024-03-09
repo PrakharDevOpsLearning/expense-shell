@@ -15,12 +15,18 @@ check_status() {
 }
 
 AppPreReq() {
-
-  print_task_heading "removing static html content from nginx"
+  echo "Inside common function"
+  print_task_heading "cleanup Old content"
   rm -rf $app_dir/*  &>>$LOG
   check_status $?
 
-  print_task_heading "downloanding frontend.zip"
+<<EOF
+  print_task_heading "Creating App Directory"
+  mkdir $app_dir  &>>$LOG
+  check_status $?
+EOF
+
+  print_task_heading "downloading App content"
   curl -o /tmp/${component}.zip https://expense-artifacts.s3.amazonaws.com/expense-${component}-v2.zip &>>$LOG
   cd $app_dir &>>$LOG
   check_status $?
