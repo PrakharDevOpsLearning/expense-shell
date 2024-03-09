@@ -17,7 +17,7 @@ check_status() {
 AppPreReq() {
   echo "Inside common function"
   print_task_heading "cleanup Old content"
-  rm -rf $app_dir/*  &>>$LOG
+  rm -rf $app_dir  &>>$LOG
   check_status $?
 
   print_task_heading "Creating App Directory"
