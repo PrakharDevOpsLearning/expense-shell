@@ -32,5 +32,4 @@ AppPreReq() {
   print_task_heading "unzip frontend"
   unzip /tmp/${component}.zip &>>$LOG
   check_status $?
-
 }
