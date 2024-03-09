@@ -32,6 +32,8 @@ print_task_heading "copying backend.service"
 cp backend.service /etc/systemd/system/backend.service &>>$LOG
 check_status $?
 
+AppPreReq
+
 <<EOF
 print_task_heading "downloading backend.zip"
 rm -rf /app &>>$LOG
@@ -44,7 +46,7 @@ check_status $?
 EOF
 
 print_task_heading "npm install"
-cd /app &>>$LOG
+cd $app_dir &>>$LOG
 npm install &>>$LOG
 check_status $?
 
