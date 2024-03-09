@@ -13,3 +13,20 @@ check_status() {
     exit 2
   fi
 }
+
+AppPreReq() {
+
+  print_task_heading "removing static html content from nginx"
+  rm -rf $app_dir/*  &>>$LOG
+  check_status $?
+
+  print_task_heading "downloanding frontend.zip"
+  curl -o /tmp/${component}.zip https://expense-artifacts.s3.amazonaws.com/expense-${component}-v2.zip &>>$LOG
+  cd $app_dir &>>$LOG
+  check_status $?
+
+  print_task_heading "unzip frontend"
+  unzip /tmp/${component}.zip &>>$LOG
+  check_status $?
+
+}
