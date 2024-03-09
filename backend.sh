@@ -34,17 +34,6 @@ check_status $?
 
 AppPreReq
 
-<<EOF
-print_task_heading "downloading backend.zip"
-rm -rf /app &>>$LOG
-check_status $?
-mkdir /app &>>$LOG
-curl -o /tmp/${component}.zip https://expense-artifacts.s3.amazonaws.com/expense-${component}-v2.zip &>>$LOG
-cd /app &>>$LOG
-unzip /tmp/${component}.zip &>>$LOG
-check_status $?
-EOF
-
 print_task_heading "npm install"
 cd $app_dir &>>$LOG
 npm install &>>$LOG

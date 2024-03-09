@@ -20,11 +20,9 @@ AppPreReq() {
   rm -rf $app_dir/*  &>>$LOG
   check_status $?
 
-<<EOF
   print_task_heading "Creating App Directory"
   mkdir $app_dir  &>>$LOG
   check_status $?
-EOF
 
   print_task_heading "downloading App content"
   curl -o /tmp/${component}.zip https://expense-artifacts.s3.amazonaws.com/expense-${component}-v2.zip &>>$LOG
