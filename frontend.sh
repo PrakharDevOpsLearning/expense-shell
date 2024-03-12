@@ -18,12 +18,6 @@ print_task_heading "enable nginx"
 systemctl enable nginx &>>$LOG
 check_status $?
 
-<<EOF
-print_task_heading "start nginx"
-systemctl start nginx &>>$LOG
-check_status $?
-EOF
-
 print_task_heading "restart of nginx"
 systemctl restart nginx &>>$LOG
 check_status $?
